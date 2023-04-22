@@ -49,7 +49,7 @@ function buildQuiz() {
 
     const note = currentQuestion.note ? `<small>${currentQuestion.note}</small><br>` : '';
     output.push(
-      `<div class="question"> ${questionCounter}. ${currentQuestion.question} ${note} </div>
+      `<div class="question"> ${questionCounter}. ${currentQuestion.question} <br> ${note} </div>
       <div class="answers"> ${answers.join('')} </div>
       <br>`
     );
