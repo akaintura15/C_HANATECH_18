@@ -22,7 +22,13 @@ body {
 h1 {
   text-align: center;
   color: #41c6bf;
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 0px;
+  margin-bottom: 30px;
 }
+
 
 /* Quiz styles */
 #quiz {
