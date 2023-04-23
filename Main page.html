@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quiz Authentication</title>
+	<script type="text/javascript">
+		function authenticate() {
+			var password = document.getElementById("password").value;
+			if(password == "Sap@123456") {
+				window.location.href = "quiz.html";
+			} else {
+				alert("Incorrect password. Please try again.");
+			}
+		}
+	</script>
+</head>
+<body>
+	<h2>Quiz Authentication</h2>
+	<label for="password">Enter password:</label>
+	<input type="password" id="password" name="password">
+	<br><br>
+	<button onclick="authenticate()">Start Quiz</button>
+</body>
+</html>
