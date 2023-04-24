@@ -9,31 +9,8 @@ function startQuiz() {
   // disable the start button after it is clicked
   startButton.disabled = true;
 
-  // set the end time for the quiz (3 hours from now)
-  const endTime = new Date();
-  endTime.setTime(endTime.getTime() + 3 * 60 * 60 * 1000);
 
-  // start the timer to update the remaining time
-  const timerElement = document.getElementById('timer');
-  const timerInterval = setInterval(() => {
-    const remainingTime = endTime.getTime() - new Date().getTime();
-    if (remainingTime <= 0) {
-      clearInterval(timerInterval);
-      showResults();
-    } else {
-      const hours = Math.floor(remainingTime / (60 * 60 * 1000));
-      const minutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
-      const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
-      timerElement.innerHTML = `Time remaining: ${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    }
-  }, 1000);
-
-  // add event listener to submit button to stop the timer
-  submitButton.addEventListener('click', () => {
-    clearInterval(timerInterval);
-  });
 }
-
 
 ///////////////////////////////////  questions start from here////////////////////////////
 const myQuestions = [
@@ -253,9 +230,252 @@ const myQuestions = [
     d: "enable_tracking"
   },
   correctAnswers: ["b"]
+},
+
+{
+  question: "Which actions can you perform using the SAP HANA platform lifecycle management web user interface?",
+  note:"choose 2 correct answers to this question.",
+    answers: {
+    a: "Stop and start the SAP HANA database system.",
+    b: "Update the SAP HANA database system.",
+    c: "Manage the full system information dumps.",
+    d: "Configure the system landscape directory registration."
+  },
+  correctAnswers: ["b","d"]
+},
+{
+  question: "Why does SAP HANA have a persistence storage layer that is disk-based?",
+  note:"choose 2 correct answers to this question.",
+    answers: {
+    a: "To persist in-memory data",
+    b: "To generate indexes for the column store ",
+    c: "To enable data recovery if the power fails",
+    d: "To allow row store operations"
+  },
+  correctAnswers: ["a","c"]
+},
+{
+  question: "What must you do to convert an SAP HANA 1.0 single database system to an SAP HANA 2.0 multitenant database system?",
+  note:"choose 1 correct answers to this question.",
+    answers: {
+    a: "Upgrade the SAP HANA database system ",
+    b: "Export/import application and customer data",
+    c: "Execute the SUM database migration option with system move",
+    d: "Create the system database manually"
+  },
+  correctAnswers: ["a"]
+},
+{
+  question: "Which tool do you use to backup the root encryption keys?",
+  note:"choose 1 correct answers to this question.",
+    answers: {
+    a: "hdbnsutil",
+    b: "hdbuserstore",
+    c: "dbacockpit",
+    d: "rsecssfx"
+  },
+  correctAnswers: ["a"]
+},
+{
+  question: "You upgrade an SAP HANA 1.0 system to SAP HANA 2.0. Which of the following activities are required to avoid compatibility issues after the upgrade?",
+  note:"choose 2 correct answers to this question.",
+    answers: {
+    a: "Export the backup jobs history from SAP HANA 1.0 and import the history after the upgrade",
+    b: "Delete all Backup schedules with the SAP HANA cockpit ",
+    c: "Create new backup schedules after the upgrade",
+    d: "Convert all SAP HANA 1.0 backup schedules to SAP HANA 2.0 backup schedules"
+  },
+  correctAnswers: ["c","d"]
+},
+{
+  question: "How can you use the results from a comparable the run to optimize the database migration option (DMO) procedure downtime for a production system?",
+  note:"choose 2 correct answers to this question.",
+    answers: {
+    a: "Use the MIGRATE_SOT_DUR.XML file to manually optimize table splitting of large tables",
+    b: "Use the UPGANA.XML analysis file to optimize the number of R3load processes.",
+    c: "Use the Test Cycle option to determine the optimal number of R3load processes.",
+    d: "Use the MIGRATE_DT_DUR.XML file to optimize table splitting and migration sequence"
+  },
+  correctAnswers: ["c","d"]
+},
+{
+  question: "When you use the database migration option reset procedure as a fallback scenario, which of the changes made during the migration are NOT reset?",
+  note:"choose 3 correct answers to this question.",
+    answers: {
+    a: "The SAP ABAP kernel on the application server ",
+    b: "The shadow schema on the non-SAP database",
+    c: "The deleted SAP BusinessObjects Business Intelligence data on the non-SAP database",
+    d: "The DBACOCKPIT user on the SAP HANA database ",
+    e: "The updated BRTOOLS on the non-SAP database"
+  },
+  correctAnswers: ["c","d","e"]
+},
+{
+  question: "What software innovations did SAP deliver with SAP HANA?",
+  note:"choose 2 correct answers to this question.",
+    answers: {
+    a: "Row and Delta store.",
+    b: "Insert only on the Column store.",
+    c: "Partitioning.",
+    d: "Compression and Decompression."
+  },
+  correctAnswers: ["b","c"]
+},
+{
+  question: "In which cases can you load and unload individual tables and table columns manually in an SAP HANA tenant database?",
+  note:"choose 2 correct answers to this question.",
+    answers: {
+    a: "To actively free up memory",
+    b: "To optimize the standby node memory ",
+    c: "To extend the scale-out memory",
+    d: "To measure total table memory"
+  },
+  correctAnswers: ["a","d"]
+},
+{
+  question: "Which backup scenarios are allowed in multitenant database containers?",
+  note:"choose 2 correct answers to this question.",
+    answers: {
+    a: "A backup of a tenant database can be recovered to an SAP HANA single- container system",
+    b: "A tenant database can initiate its own backup unless this is prohibited by the system configuration",
+    c: "The system database can initiate its own backup and the backup of tenant databases",
+    d: "The system database should be recovered first in order to recover the tenant databases"
+  },
+  correctAnswers: ["b","d"]
+},
+{
+  question: "Which feature do you configure to prevent the whole SAP HANA database system from reaching physical processing limits?",
+  note:"choose 1 correct answers to this question.",
+    answers: {
+    a: "Admission control",
+    b: "Performance trace",
+    c: "Capture and replay ",
+    d: "Workload classes"
+  },
+  correctAnswers: ["a"]
+},
+
+{
+  question: "Which of the following statements are true about SAP HANA Live?",
+  note:"choose 2 correct answers to this question.",
+    answers: {
+    a: "SAP HANA Live for SAP Business Suite focuses on Enterprise Data Warehouse cases, and not on live operational reporting.",
+    b: "SAP HANA Live for SAP Business Suite is a Rapid Deployment Solution",
+    c: "SAP HANA Live for SAP Business Suite comprises an Analytical Model.",
+    d: "SAP HANA Live for SAP Business Suite comes with a comprehensive set of predefined models from across the SAP Business Suite",
+    e: "SAP HANA Live for SAP Business Suite is an accelerator."
+},
+  correctAnswers: ["c","d"]
+},
+{
+  question: "You migrate an SAP HANA system using the SUM database migration option. Which activities do you perform to activate the viewer mode for SAP support?",
+  note:"choose 2 correct answers to this question.",
+    answers: {
+    a: "Provide the SUM URL to SAP support",
+    b: "Provide the sum observer URL to SAP support",
+    c: "Create the database user obs on the application server ",
+    d: "Create the OS user obs on the application server"
+   
+},
+  correctAnswers: ["b","d"]
+},
+{
+  question: "What is XS?",
+  note:"choose 1 correct answers to this question.",
+    answers: {
+    a: "A native, lightweight application server",
+    b: "An optional engine to handle excessive data loads ",
+    c: "A data cleansing engine",
+    d: "A user interface"
+   
+},
+  correctAnswers: ["a"]
+},
+{
+  question: "Which action do you perform when the data area in an SAP HANA database is running out of space?",
+  note:"choose 1 correct answers to this question.",
+    answers: {
+    a: "Extend the file system size in the operating system level ",
+    b: "Extend the size of the database volume ",
+    c: "Create a new tenant database ",
+    d: "Create a new database volume"
+   
+},
+  correctAnswers: ["d"]
+},
+{
+  question: "Which user credentials do you need to stop the SAP HANA database system using the SAP HANA cockpit?",
+  note:"choose 1 correct answers to this question.",
+    answers: {
+    a: "sap<sid>",
+    b: "<sid>adm",
+    c: "Root",
+    d: "Cockpit User ",
+    e: "Database user"
+   
+},
+  correctAnswers: ["d","a","e"]
+},
+{
+  question: "How are user group administrators and user groups related?",
+  note:"choose 2 correct answers to this question.",
+    answers: {
+    a: "Multiple user group administrators per user group ",
+    b: "Only one user group per user group administrator ",
+    c: "Only one user group administrator per user group",
+    d: "Multiple user groups per user group administrator"
+   
+},
+  correctAnswers: ["a","d"]
+},
+{
+  question: "You are planning an SAP S/4HANA scale-out system. What are the minimal size requirements for CPU and memory?",
+  note:"choose 2 correct answers to this question.",
+    answers: {
+    a: "RAM: >= 6TB, CPU: >=12  ",
+    b: "RAM: >= 4TB, CPU: >= 8",
+    c: "RAM: >= 6TB, CPU: >= 8",
+    d: "RAM: >= 8TB, CPU: >=12"
+   
+},
+  correctAnswers: ["c",]
+},
+{
+  question: "Which tools do you use to delete diagnosis files?",
+  note:"choose 2 correct answers to this question.",
+    answers: {
+    a: "SAP HANA cleaner",
+    b: "SAP HANA Web-based Development Workbench ",
+    c: "SAP HANA database explorer",
+    d: "SAP HANA cockpit"
+   
+},
+  correctAnswers: ["a","b"]
+},
+{
+  question: "Which types of backups can you use to copy an SAP HANA tenant database?",
+  note:"choose 2 correct answers to this question.",
+    answers: {
+    a: "Data snapshot ",
+    b: "Fallback snapshot",
+    c: "Full database backup ",
+    d: "Delta database backup"
+   
+},
+  correctAnswers: ["a","c"]
+},
+{
+  question: "Which prerequisites of the primary system and the secondary system are mandatory before you can activate the SAP HANA system replication with secondary time travel?",
+  note:"choose 2 correct answers to this question.",
+    answers: {
+    a: "Both systems are located in the same data center.",
+    b: "An explicit read-only connect on between both systems must be available.",
+    c: "The CPU architecture must be identical.",
+    d: "Both must have the same SAP HANA version."
+   
+},
+  correctAnswers: ["c","d"]
 }
-
-
 
 ];
 
@@ -263,7 +483,13 @@ function buildQuiz() {
   const output = [];
   let questionCounter = 1; // initialize counter variable
 
-  myQuestions.forEach((currentQuestion, questionNumber) => {
+  // Shuffle the questions array
+  const shuffledQuestions = shuffleArray(myQuestions);
+
+  // Take the first two questions to display
+  const questionsToDisplay = shuffledQuestions.slice(0, 20);
+
+  questionsToDisplay.forEach((currentQuestion, questionNumber) => {
     const answers = [];
 
     for (const letter in currentQuestion.answers) {
@@ -289,12 +515,21 @@ function buildQuiz() {
   quizContainer.innerHTML = output.join('');
 }
 
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+
 function showResults() {
   const answerContainers = quizContainer.querySelectorAll('.answers');
 
   let numCorrect = 0;
 
-  myQuestions.forEach((currentQuestion, questionNumber) => {
+  myQuestions.slice(0, 20).forEach((currentQuestion, questionNumber) => {
     const answerContainer = answerContainers[questionNumber];
     const selector = `input[name=question${questionNumber}]:checked`;
     const userAnswers = Array.from(answerContainer.querySelectorAll(selector)).map((checkbox) => checkbox.value);
@@ -327,8 +562,8 @@ function showResults() {
     }
   });
 
-  const percentage = Math.round((numCorrect / myQuestions.length) * 100);
-  resultsContainer.innerHTML = `You answered ${numCorrect} out of ${myQuestions.length} questions correctly (${percentage}%).`;
+  const percentage = Math.round((numCorrect /  myQuestions.length) * 100);
+  resultsContainer.innerHTML = `You answered ${numCorrect} out of 2 questions correctly (${percentage}%).`;
 
   // disable all input elements on the page to prevent further changes to the quiz
   const inputElements = document.getElementsByTagName('input');
@@ -339,6 +574,7 @@ function showResults() {
   // disable the submit button to prevent multiple clicks
   submitButton.disabled = true;
 }
+
 
 
 
